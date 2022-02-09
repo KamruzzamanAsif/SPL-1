@@ -16,6 +16,13 @@ public class Main {
         for(String line: commentRemovedCode){
             System.out.println(line);
         }
+
+        FrontWhiteSpaceRemover frontWhiteSpaceRemover = new FrontWhiteSpaceRemover();
+        ArrayList<String> frontWhiteSpaceRemovedCode = new ArrayList<>();
+        frontWhiteSpaceRemovedCode = frontWhiteSpaceRemover.removeFrontWhiteSpace(commentRemovedCode);
+        for(String line: frontWhiteSpaceRemovedCode){
+            System.out.println(line);
+        }
     }
 
 }
