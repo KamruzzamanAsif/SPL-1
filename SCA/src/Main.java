@@ -23,6 +23,13 @@ public class Main {
         for(String line: frontWhiteSpaceRemovedCode){
             System.out.println(line);
         }
+
+        BlankLineRemover blankLineRemover = new BlankLineRemover();
+        ArrayList<String> blankLineRemovedCode = new ArrayList<>();
+        blankLineRemovedCode = blankLineRemover.blankLineRemover(frontWhiteSpaceRemovedCode);
+        for(String line: blankLineRemovedCode){
+            System.out.println(line);
+        }
     }
 
 }
