@@ -32,6 +32,13 @@ public class Main {
         for(String line: blankLineRemovedCode){
             System.out.println(line);
         }
+
+        HashDirectiveRemover hashDirectiveRemover = new HashDirectiveRemover();
+        ArrayList<String> hashDirectiveRemovedCode = new ArrayList<>();
+        hashDirectiveRemovedCode = hashDirectiveRemover.removeHashDirective(blankLineRemovedCode);
+        for(String line: hashDirectiveRemovedCode){
+            System.out.println(line);
+        }
     }
 
 }
