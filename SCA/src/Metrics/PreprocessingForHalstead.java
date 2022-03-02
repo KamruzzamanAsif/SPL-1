@@ -1,9 +1,6 @@
 package Metrics;
 
-import Preprocessing.BlankLineRemover;
-import Preprocessing.CommentRemover;
-import Preprocessing.FrontWhiteSpaceRemover;
-import Preprocessing.HashDirectiveRemover;
+import Preprocessing.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,11 +13,13 @@ public class PreprocessingForHalstead {
     FrontWhiteSpaceRemover frontWhiteSpaceRemover;
     BlankLineRemover blankLineRemover;
     HashDirectiveRemover hashDirectiveRemover;
+    FunctionDeclarationRemover functionDeclarationRemover;
 
     ArrayList<String> commentRemovedCode;
     ArrayList<String> frontWhiteSpaceRemovedCode;
     ArrayList<String> blankLineRemovedCode;
     ArrayList<String> hashDirectiveRemovedCode;
+    ArrayList<String> functionDeclarationRemovedCode;
 
     public void setPath(String path){
         this.path = path;
@@ -51,6 +50,9 @@ public class PreprocessingForHalstead {
 //        for(String line: hashDirectiveRemovedCode){
 //            System.out.println(line);
 //        }
+
+        functionDeclarationRemover = new FunctionDeclarationRemover();
+        functionDeclarationRemover.removeFunctionDeclaration(hashDirectiveRemovedCode);
     }
 
     public ArrayList<String> getPreprocessedCodeForHalstead(){

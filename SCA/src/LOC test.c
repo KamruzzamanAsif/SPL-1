@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+void my_function(int a, int b);
+
 int main() {
     char c; // declaring variable
     int lowercase_vowel, uppercase_vowel;
