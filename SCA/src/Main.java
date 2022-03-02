@@ -1,3 +1,4 @@
+import Metrics.Halstead;
 import Metrics.LOC;
 import Metrics.PreprocessingForHalstead;
 import Preprocessing.BlankLineRemover;
@@ -46,14 +47,17 @@ public class Main {
 //        }
 
 
-        PreprocessingForHalstead preprocessingForHalstead = new PreprocessingForHalstead();
-        preprocessingForHalstead.setPath(path);
-        preprocessingForHalstead.process();
-        ArrayList<String> preprocessedCodeForHalstead = new ArrayList<>();
-        preprocessedCodeForHalstead = preprocessingForHalstead.getPreprocessedCodeForHalstead();
-        for(String line: preprocessedCodeForHalstead){
-            System.out.println(line);
-       }
+//        PreprocessingForHalstead preprocessingForHalstead = new PreprocessingForHalstead();
+//        preprocessingForHalstead.setPath(path);
+//        preprocessingForHalstead.process();
+//        ArrayList<String> preprocessedCodeForHalstead = new ArrayList<>();
+//        preprocessedCodeForHalstead = preprocessingForHalstead.getPreprocessedCodeForHalstead();
+//        for(String line: preprocessedCodeForHalstead){
+//            System.out.println(line);
+
+
+        Halstead halstead = new Halstead(path);
+        halstead.DoHalstead();
 
     }
 
