@@ -3,7 +3,13 @@
 
 #include <stdio.h>
 
-void my_function(int a, int b);
+void my_function1(int a, int b);
+int my_function2(char c, char d);
+
+struct node{
+    int aa;
+    int bb;
+};
 
 int main() {
     char c; // declaring variable

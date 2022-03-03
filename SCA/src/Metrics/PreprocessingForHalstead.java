@@ -52,11 +52,11 @@ public class PreprocessingForHalstead {
 //        }
 
         functionDeclarationRemover = new FunctionDeclarationRemover();
-        functionDeclarationRemover.removeFunctionDeclaration(hashDirectiveRemovedCode);
+        functionDeclarationRemovedCode = functionDeclarationRemover.removeFunctionDeclaration(hashDirectiveRemovedCode);
     }
 
     public ArrayList<String> getPreprocessedCodeForHalstead(){
-        finalProcessedCodeForHalstead = hashDirectiveRemovedCode;
+        finalProcessedCodeForHalstead = functionDeclarationRemovedCode;
         return finalProcessedCodeForHalstead;
     }
 }
