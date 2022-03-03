@@ -1,24 +1,29 @@
 package Preprocessing;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class HashDirectiveRemover {
-    ArrayList<String> hashDirectives = new ArrayList<String>(
-            Arrays.asList("#include", "#define", "#pragma", "#error",
-                          "#if", "#ifdef", "#ifndef", "#else", "#elif",
-                          "#endif", "#warning", "#undef", "#line")
-    );
+    String []hashDir = {"#include", "#define", "#pragma", "#error",
+            "#if", "#ifdef", "#ifndef", "#else", "#elif",
+            "#endif", "#warning", "#undef", "#line"};
 
+    ArrayList<String> hashDirectives = new ArrayList<>();
     ArrayList<String> hashDirectiveRemovedCode = new ArrayList<>();
     String line;
 
     public ArrayList<String> removeHashDirective(ArrayList<String> code){
+        addHashDirToArrayList();
         for(int i=0; i<code.size(); i++){
             line = code.get(i);
             lineWiseHashDirectiveRemover(line, 0, line.length());
         }
         return hashDirectiveRemovedCode;
+    }
+
+    private void addHashDirToArrayList() {
+        for(String str: hashDir){
+            hashDirectives.add(str);
+        }
     }
 
     public void lineWiseHashDirectiveRemover(String line, int statIndex, int finishingIndex){
