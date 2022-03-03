@@ -22,8 +22,8 @@ public class Halstead {
         //initailizeHalsteadData();
         preProcessForHalstead();
         // tokenizing testing
-//        Tokenizer tok = new Tokenizer(preprocessedCodeForHalstead);
-//        tok.tokenize();
+        Tokenizer tok = new Tokenizer(preprocessedCodeForHalstead);
+        tok.tokenize();
     }
 
     public void preProcessForHalstead() throws IOException {
