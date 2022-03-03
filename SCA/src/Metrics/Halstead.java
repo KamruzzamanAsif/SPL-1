@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Halstead {
     String path;
     PreprocessingForHalstead preprocessingForHalstead;
+    ArrayList<String> preprocessedCodeForHalstead = new ArrayList<>();
 
     // halstead constructor
     public Halstead(String path){
@@ -20,18 +21,19 @@ public class Halstead {
     public void DoHalstead() throws IOException {
         //initailizeHalsteadData();
         preProcessForHalstead();
-        //HalsteadresultGenerator();
+        // tokenizing testing
+//        Tokenizer tok = new Tokenizer(preprocessedCodeForHalstead);
+//        tok.tokenize();
     }
 
     public void preProcessForHalstead() throws IOException {
         preprocessingForHalstead = new PreprocessingForHalstead();
         preprocessingForHalstead.setPath(this.path);
         preprocessingForHalstead.process();
-        ArrayList<String> preprocessedCodeForHalstead = new ArrayList<String>();
         preprocessedCodeForHalstead = preprocessingForHalstead.getPreprocessedCodeForHalstead();
-        for(String line: preprocessedCodeForHalstead){
-            System.out.println(line);
-        }
+//        for(String line: preprocessedCodeForHalstead){
+//            System.out.println(line);
+//        }
     }
 
 }
