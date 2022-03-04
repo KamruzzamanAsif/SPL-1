@@ -7,8 +7,9 @@ void my_function1(int a, int b);
 int my_function2(char c, char d);
 
 struct node{
-    int aa;
-    int bb;
+    int aa = 100;
+    float bb=5.68;
+    string str1 = "hehe";
 };
 
 int main() {
