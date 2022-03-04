@@ -33,6 +33,6 @@ int main() {
     return 0;
 }
 
-int my_function1(){
+int my_function1(int x, int y){
     int a;
 }
