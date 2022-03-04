@@ -2,11 +2,13 @@ package Metrics;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Halstead {
     String path;
     PreprocessingForHalstead preprocessingForHalstead;
     ArrayList<String> preprocessedCodeForHalstead = new ArrayList<>();
+    int [][]functionAreaIndex;
 
     // halstead constructor
     public Halstead(String path){
@@ -21,19 +23,23 @@ public class Halstead {
     public void DoHalstead() throws IOException {
         //initailizeHalsteadData();
         preProcessForHalstead();
+        detectMethodArea();
         // tokenizing testing
-        Tokenizer tok = new Tokenizer(preprocessedCodeForHalstead);
+        Tokenizer tok = new Tokenizer(preprocessedCodeForHalstead, functionAreaIndex);
         tok.tokenize();
     }
 
-    public void preProcessForHalstead() throws IOException {
+    private void preProcessForHalstead() throws IOException {
         preprocessingForHalstead = new PreprocessingForHalstead();
         preprocessingForHalstead.setPath(this.path);
         preprocessingForHalstead.process();
         preprocessedCodeForHalstead = preprocessingForHalstead.getPreprocessedCodeForHalstead();
-//        for(String line: preprocessedCodeForHalstead){
-//            System.out.println(line);
-//        }
+    }
+
+    private void detectMethodArea(){
+        FunctionArea functionArea = new FunctionArea();
+        functionAreaIndex = functionArea.detectFunctionArea(preprocessedCodeForHalstead);
+        //System.out.println(Arrays.deepToString(functionAreaIndex));
     }
 
 }

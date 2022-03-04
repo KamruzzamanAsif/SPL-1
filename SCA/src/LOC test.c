@@ -32,3 +32,7 @@ int main() {
         
     return 0;
 }
+
+int my_function1(){
+    int a;
+}

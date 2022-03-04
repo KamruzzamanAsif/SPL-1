@@ -6,6 +6,7 @@ public class Tokenizer {
     //here preprocessed code will be passed
     // and this code will be tokenized
     ArrayList<String> codeForTokenizing = new ArrayList<>();
+    int [][]functionArea;
 
     // operator token lists
     ArrayList<String> codeForOperatorTokenizing = new ArrayList<>();
@@ -13,11 +14,13 @@ public class Tokenizer {
     ArrayList<String> characterToken = new ArrayList<>();
     ArrayList<String> numberToken = new ArrayList<>();
     ArrayList<String> typeSpecifierToken = new ArrayList<>();
+    ArrayList<String> identifierToken = new ArrayList<>();
 
 
     // through constructor set the codeForTokenizing
-    public Tokenizer(ArrayList<String> codeForTokenizing){
+    public Tokenizer(ArrayList<String> codeForTokenizing, int [][]functionArea){
         this.codeForTokenizing = codeForTokenizing;
+        this.functionArea = functionArea;
     }
 
     public void tokenize(){
@@ -31,14 +34,15 @@ public class Tokenizer {
         separateCharacters();
         separateNumbers();
         separateTypeSpecifiers();
+        separateIdentifiers();
 //        for(String line: stringToken)
 //            System.out.println(line);
 //        for(String line: characterToken)
 //            System.out.println(line);
 //        for(String line: numberToken)
 //            System.out.println(line);
-        for(String line: typeSpecifierToken)
-            System.out.println(line);
+//        for(String line: typeSpecifierToken)
+//            System.out.println(line);
     }
 
 //    private void substringRemover(int index, int start, int end){
@@ -201,6 +205,13 @@ public class Tokenizer {
     // Type Specifier separation ends here
 
 
+    //*** To handle variable token we must go through function area wise ***//
+    // Because: Global variables used in different modules of the same program are counted as multiple occurrences of the same variable.
+    //          Local variables with the same name in different functions are counted as unique operands
 
+    // Variable tokenization begins
+    private void separateIdentifiers(){
+
+    }
 
 }
