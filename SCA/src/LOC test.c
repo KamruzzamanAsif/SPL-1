@@ -36,4 +36,11 @@ int main() {
 
 int my_function1(int x, int y){
     int a;
+    for(int i=0; i<10; i++)
+       printf("HI");
+
+    if(a==1)
+       printf("1");
+    else
+       printf("2");
 }

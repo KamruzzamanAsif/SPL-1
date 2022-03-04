@@ -8,7 +8,7 @@ public class Tokenizer {
     ArrayList<String> codeForTokenizing = new ArrayList<>();
     int [][]functionArea;
 
-    // operator token lists
+    // operand token lists
     ArrayList<String> codeForOperandTokenizing = new ArrayList<>();
     ArrayList<String> stringToken = new ArrayList<>();
     ArrayList<String> characterToken = new ArrayList<>();
@@ -16,6 +16,15 @@ public class Tokenizer {
     ArrayList<String> typeSpecifierToken = new ArrayList<>();
     ArrayList<String> identifierToken = new ArrayList<>();
     ArrayList<String> tempUniqueIdentifier = new ArrayList<>(); // for method level temp arrayList
+
+    // operator token lists
+    ArrayList<String> codeForOperatorTokenizing = new ArrayList<>();
+    ArrayList<String> reservedWordToken = new ArrayList<>();
+    ArrayList<String> loopingStatementToken = new ArrayList<>();
+    ArrayList<String> controlStatementToken = new ArrayList<>();
+    ArrayList<String> bracketToken = new ArrayList<>();
+    ArrayList<String> singleOperatorToken = new ArrayList<>();
+    ArrayList<String> doubleOperatorToken = new ArrayList<>();
 
 
     // through constructor set the codeForTokenizing
@@ -26,8 +35,10 @@ public class Tokenizer {
 
     public void tokenize(){
         tokenizeOperands();
-        //tokenizeOperators();
+        tokenizeOperators();
     }
+
+    /****  Operand Tokenization Starts here   ****/
 
     private void tokenizeOperands() {
         codeForOperandTokenizing = codeForTokenizing;
@@ -44,8 +55,8 @@ public class Tokenizer {
 //            System.out.println(line);
 //        for(String line: typeSpecifierToken)
 //            System.out.println(line);
-        for(String line: identifierToken)
-            System.out.println(line);
+//        for(String line: identifierToken)
+//            System.out.println(line);
     }
 
 //    private void substringRemover(int index, int start, int end){
@@ -444,4 +455,201 @@ public class Tokenizer {
 
     //*** Identifier separation ends here ***//
 
+    /****    Operand Tokenization ends here    ****/
+
+
+
+    /****   Operator Tokenization starts here   ****/
+
+    private void tokenizeOperators(){
+        codeForOperatorTokenizing = codeForTokenizing;
+        separate_Reserved_Loop_Control();
+        separate_Bracket_otherOperators();
+    }
+
+    ///***   Separation of Reserved Words, Loop Statements, and Control Statements begins  ***///
+    private void separate_Reserved_Loop_Control(){
+        for(int i=0; i<codeForOperatorTokenizing.size(); i++){
+            String line = codeForOperatorTokenizing.get(i);
+            lineWise_separate_Reserved_Loop_Control(line);
+        }
+
+//        for(String str: reservedWordToken)
+//            System.out.println(str);
+//        for(String str: loopingStatementToken)
+//            System.out.println(str);
+//        for(String str: controlStatementToken)
+//            System.out.println(str);
+    }
+
+    private void lineWise_separate_Reserved_Loop_Control(String line) {
+        int lineSize = line.length();
+        StringBuilder str = new StringBuilder();
+
+        int i=0;
+        while(i<lineSize){
+            char c = line.charAt(i);
+            if(!isStopChar(c)){
+                str.append(c);
+
+                // for checking the last word in a line
+                if(i==lineSize-1){
+                    String temp = str.toString();
+                    if(isReservedWord(temp)){
+                        reservedWordToken.add(temp);
+                    }
+                    else if(isLoopStatement(temp)){
+                        loopingStatementToken.add(temp);
+                    }
+                    else if(isControlStatement(temp)){
+                        controlStatementToken.add(temp);
+                    }
+
+                    i++;
+                    str.setLength(0);
+                }
+
+                i++;
+            }
+            else{
+                String temp = str.toString();
+                if(isReservedWord(temp)){
+                    reservedWordToken.add(temp);
+                }
+                else if(isLoopStatement(temp)){
+                    loopingStatementToken.add(temp);
+                }
+                else if(isControlStatement(temp)){
+                    controlStatementToken.add(temp);
+                }
+
+                i++;
+                str.setLength(0);
+            }
+        }
+    }
+
+
+    private boolean isStopChar(char c) {
+        char []ch ={' ', '\n', ',', ';', '+', '-', '*', '/', '=', '{', '}', '^', '%', '[', ']', '.', '>', '(', ')'};
+        for(char x: ch){
+            if(x==c){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isReservedWord(String temp) {
+        String []reservedWords = {"auto", "break", "case", "const", "continue",
+                                   "default", "do", "register", "return", "short",
+                                   "signed", "sizeof", "static", "goto", "typedef",
+                                   "unsigned", "volatile", "enum", "extern"};
+
+        for(String str: reservedWords){
+            if(str.equals(temp)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isLoopStatement(String temp) {
+        String []loopStatements = {"for", "while", "do"};
+
+        for(String str: loopStatements){
+            if(str.equals(temp)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isControlStatement(String temp) {
+        String []controlStatements = {"if", "else", "switch", "case"};
+
+        for(String str: controlStatements){
+            if(str.equals(temp)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    ///***   Separation of Reserved Words, Loop Statements, and Control Statements ends here  ***///
+
+
+    ///***   Separation of Brackets and other Operators begins  ***///
+    private void separate_Bracket_otherOperators(){
+        for(int i=0; i<codeForOperatorTokenizing.size(); i++){
+            String line = codeForOperatorTokenizing.get(i);
+            lineWise_separate_Bracket_otherOperators(line);
+        }
+
+//        for(String str: bracketToken)
+//            System.out.println(str);
+//        for(String str: singleOperatorToken)
+//            System.out.println(str);
+//        for(String str: doubleOperatorToken)
+//            System.out.println(str);
+    }
+
+    private void lineWise_separate_Bracket_otherOperators(String line){
+        int lineSize = line.length();
+        StringBuilder str = new StringBuilder();
+        int i=0;
+        while(i<lineSize){
+            char c = line.charAt(i);
+            if(isBracket(c)){
+                str.append(c);
+                bracketToken.add(str.toString());
+                str.setLength(0);
+                i++;
+            }
+            else if(operator(c)){
+                str.append(c);
+                if(i<lineSize-1 && operator(line.charAt(i+1))){
+                    str.append(c);
+                    doubleOperatorToken.add(str.toString());
+                    i=i+2;
+                    str.setLength(0);
+                }
+                else{
+                    singleOperatorToken.add(str.toString());
+                    i++;
+                    str.setLength(0);
+                }
+            }
+            else{
+                i++;
+                str.setLength(0);
+            }
+        }
+    }
+
+    private boolean isBracket(char c){
+        char []brackets = {'(', ')', '{', '}', '[',']'};
+        for(char ch: brackets){
+            if(ch==c){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean operator(char c){
+        char []operator = {'+', '-', '*', '/', '=', '%', '!', '<', '>', '|',
+                           '&', '~', '^', '.', ':', '?'};
+
+        for(char ch: operator){
+            if(ch==c){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    ///***  Separation of Brackets and other Operators ends here  ***///
+
+    /****   Operator Tokenization ends here   ****/ 
 }
