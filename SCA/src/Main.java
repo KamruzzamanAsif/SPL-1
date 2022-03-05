@@ -1,13 +1,7 @@
 import Metrics.Halstead;
 import Metrics.LOC;
-import Metrics.PreprocessingForHalstead;
-import Preprocessing.BlankLineRemover;
-import Preprocessing.CommentRemover;
-import Preprocessing.FrontWhiteSpaceRemover;
-import Preprocessing.HashDirectiveRemover;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main {
 
@@ -16,7 +10,7 @@ public class Main {
         String path = "G:/SCA/src/LOC test.c";
 
         LOC loc = new LOC();
-        loc.LOC(path);
+        loc.DoLOC(path);
 
 //        CommentRemover commentRemover = new CommentRemover();
 //        ArrayList<String> commentRemovedCode = new ArrayList();

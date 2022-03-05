@@ -21,7 +21,7 @@ public class LOC {
     boolean multipleLineCommentIndicator;
 
     // main function of this class that does every job
-    public void LOC(String fp) throws IOException {
+    public void DoLOC(String fp) throws IOException {
         initializeData();
         analyze(fp);
         printData();
@@ -37,7 +37,7 @@ public class LOC {
         multipleLineCommentIndicator = false;
     }
 
-        // this function will analyze the source coed
+    // this function will analyze the source coed
     public void analyze(String fp) throws IOException {
         FileReader fr = null;
         try {
@@ -52,7 +52,7 @@ public class LOC {
         }
     }
 
-        // analyze the source coed ine by line
+    // analyze the source coed ine by line
     private void singleLineAnalyzer(String line, int startIndex, int finishingIndex){
         if(emptyLineCounter(line, startIndex, finishingIndex)==true){
             numberOfBlankLine++;
@@ -204,11 +204,12 @@ public class LOC {
     }
 
     private void printData() {
-        System.out.println("Blank line: "+ numberOfBlankLine);
-        System.out.println("Physical line: "+ numberOfPhysicalLine);
-        System.out.println("Logical Statements: "+ numberOfLogicalStatements);
-        System.out.println("Only Comment Line: "+ onlyCommentLine);
-        System.out.println("Comment and Statement line: "+commentAndStatementLines);
-        System.out.println("Only Statement line: "+ onlyStatementLines);
+        System.out.println("///*** LOC Metrics ***///");
+        System.out.println("Total Blank lines: "+ numberOfBlankLine);
+        System.out.println("Total Physical lines: "+ numberOfPhysicalLine);
+        System.out.println("Total Logical Statements: "+ numberOfLogicalStatements);
+        System.out.println("Number of Only Comment Lines: "+ onlyCommentLine);
+        System.out.println("Number of Comment and Statement lines: "+commentAndStatementLines);
+        System.out.println("Number of Only Statement line: "+ onlyStatementLines);
     }
 }

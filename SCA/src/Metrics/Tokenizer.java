@@ -651,5 +651,52 @@ public class Tokenizer {
 
     ///***  Separation of Brackets and other Operators ends here  ***///
 
-    /****   Operator Tokenization ends here   ****/ 
+    /****   Operator Tokenization ends here   ****/
+
+
+    /** return operand tokens **/
+    public ArrayList<String> getStringToken(){
+        return stringToken;
+    }
+
+    public ArrayList<String> getCharacterToken(){
+        return characterToken;
+    }
+
+    public ArrayList<String> getNumberToken(){
+        return numberToken;
+    }
+
+    public ArrayList<String> getTypeSpecifierToken(){
+        return typeSpecifierToken;
+    }
+
+    public ArrayList<String> getIdentifierToken(){
+        return identifierToken;
+    }
+
+    /** return operator tokens **/
+    public ArrayList<String> getReservedWordToken(){
+        return reservedWordToken;
+    }
+
+    public ArrayList<String> getLoopingStatementToken(){
+        return loopingStatementToken;
+    }
+
+    public ArrayList<String> getControlStatementToken(){
+        return controlStatementToken;
+    }
+
+    public ArrayList<String> getBracketToken(){
+        return bracketToken;
+    }
+
+    public ArrayList<String> getSingleOperatorToken(){
+        return singleOperatorToken;
+    }
+
+    public ArrayList<String> getDoubleOperatorToken(){
+        return doubleOperatorToken;
+    }
 }
