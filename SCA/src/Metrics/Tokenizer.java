@@ -639,7 +639,7 @@ public class Tokenizer {
 
     private boolean operator(char c){
         char []operator = {'+', '-', '*', '/', '=', '%', '!', '<', '>', '|',
-                           '&', '~', '^', '.', ':', '?'};
+                           '&', '~', '^', '.', ':', '?', ',', ';'};
 
         for(char ch: operator){
             if(ch==c){

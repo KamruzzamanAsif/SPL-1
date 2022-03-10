@@ -54,7 +54,7 @@ public class LOC {
 
     // analyze the source coed ine by line
     private void singleLineAnalyzer(String line, int startIndex, int finishingIndex){
-        if(emptyLineCounter(line, startIndex, finishingIndex)==true){
+        if(emptyLineCounter(line, startIndex, finishingIndex)){
             numberOfBlankLine++;
         }
         else{
@@ -67,7 +67,7 @@ public class LOC {
                 statementLineFlag = true;
             }
 
-            if(onlyCommentLineFinder(line, startIndex, finishingIndex)==true){
+            if(onlyCommentLineFinder(line, startIndex, finishingIndex)){
                 onlyCommentLine++;
                 commentLineFlag = true;
             }
@@ -90,39 +90,38 @@ public class LOC {
         return true;
     }
 
-        // this will count the logical statements
-        // In C the logical statements are those which ends with a semicolon
+    // this will count the logical statements
+    // In C the logical statements are those which ends with a semicolon
     private int onlyStatementCounter(String line, int startIndex, int finishingIndex) {
         int len = finishingIndex;
         int StatementAfterCommentIndex = 0;
         tempStatementCounter = 0;
+        StringBuilder str = new StringBuilder();
 
         StatementAfterCommentIndex = findTheIndexAfterComment(line, startIndex, finishingIndex);
         Stack<Character> stack = new Stack<>();
 
         for(int i=StatementAfterCommentIndex; i<len; i++){
             if(stack.empty()){
-                if(line.charAt(i)==')'){
-                    continue;
-                }
-                else if(line.charAt(i)=='('){
+                if(line.charAt(i)=='('){
                     stack.push(line.charAt(i));
                 }
                 else if(line.charAt(i)=='"'){
                     stack.push(line.charAt(i));
                 }
-                else if(line.charAt(i)=='/' && line.charAt(i+1)=='*' && (i!=len-1)){
+                else if((i!=len-1) && line.charAt(i)=='/' && line.charAt(i+1)=='*'){
                     stack.push(line.charAt(i+1));
                 }
-                else if(line.charAt(i)=='/' && line.charAt(i+1)=='/' && (i!=len-1)){
+                else if((i!=len-1) && line.charAt(i)=='/' && line.charAt(i+1)=='/'){
                     return tempStatementCounter;
                 }
-                else if(line.charAt(i)==';'){
+                else if(line.charAt(i)==';' && line.charAt(i-1)!=')'){
                     tempStatementCounter++;
                 }
             }
             else{
                 if(line.charAt(i)==')' && stack.peek()=='('){
+                    tempStatementCounter++;
                     stack.pop();
                 }
                 else if(line.charAt(i)=='"' && stack.peek()=='"'){
@@ -137,9 +136,9 @@ public class LOC {
         return tempStatementCounter;
     }
 
-        // to find the end of a comment
+    // to find the end of a comment
     private int findTheIndexAfterComment(String line, int startIndex, int finishingIndex) {
-        if(multipleLineCommentIndicator == true){
+        if(multipleLineCommentIndicator){
             for(int i=startIndex; i<finishingIndex; i++){
                 if(line.charAt(i)=='*' && line.charAt(i+1)=='/'){
                     return i+2;
@@ -150,13 +149,13 @@ public class LOC {
         return 0;
     }
 
-        // this will find only comment lines
+    // this will find only comment lines
     private boolean onlyCommentLineFinder(String line, int startIndex, int finishingIndex) {
         int len = finishingIndex - 1;
         boolean flag = false;
         boolean countAsCommentLine = false;
 
-        if(multipleLineCommentIndicator == true){
+        if(multipleLineCommentIndicator){
             countAsCommentLine = true;
         }
 
@@ -164,7 +163,7 @@ public class LOC {
             if(line.charAt(i)==' '){
                 continue;
             }
-            else if(flag==false){
+            else if(!flag){
                 if(line.charAt(i)=='/' && line.charAt(i+1)=='/'){
                     return true;
                 }
@@ -179,12 +178,12 @@ public class LOC {
                     flag = true;
                 }
             }
-            else if(line.charAt(i)=='"' && flag==true){
+            else if(line.charAt(i)=='"' && flag){
                 flag = false;
             }
         }
 
-        if(countAsCommentLine==true){
+        if(countAsCommentLine){
             return true;
         }
 
@@ -194,11 +193,11 @@ public class LOC {
     // this will check the line
     // whether it contains both comment and statement
     private void checkLineType(boolean commentLineFlag, boolean statementLineFlag) {
-        if(commentLineFlag == true && statementLineFlag == true){
+        if(commentLineFlag && statementLineFlag){
             commentAndStatementLines++;
             onlyCommentLine--;
         }
-        else if(statementLineFlag == true){
+        else if(statementLineFlag){
             onlyStatementLines++;
         }
     }
