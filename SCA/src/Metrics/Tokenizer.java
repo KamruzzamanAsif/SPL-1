@@ -1,6 +1,8 @@
 package Metrics;
 
 import java.util.ArrayList;
+import java.util.Stack;
+import java.util.Vector;
 
 public class Tokenizer {
     //here preprocessed code will be passed
@@ -9,7 +11,8 @@ public class Tokenizer {
     int [][]functionArea;
 
     // operand token lists
-    ArrayList<String> codeForOperandTokenizing = new ArrayList<>();
+    //ArrayList<String> codeForOperandTokenizing = new ArrayList<>();
+    Vector<String> codeForOperandTokenizing = new Vector<>();
     ArrayList<String> stringToken = new ArrayList<>();
     ArrayList<String> characterToken = new ArrayList<>();
     ArrayList<String> numberToken = new ArrayList<>();
@@ -18,13 +21,17 @@ public class Tokenizer {
     ArrayList<String> tempUniqueIdentifier = new ArrayList<>(); // for method level temp arrayList
 
     // operator token lists
-    ArrayList<String> codeForOperatorTokenizing = new ArrayList<>();
+    //ArrayList<String> codeForOperatorTokenizing = new ArrayList<>();
+    Vector<String> codeForOperatorTokenizing = new Vector<>();
     ArrayList<String> reservedWordToken = new ArrayList<>();
     ArrayList<String> loopingStatementToken = new ArrayList<>();
     ArrayList<String> controlStatementToken = new ArrayList<>();
     ArrayList<String> bracketToken = new ArrayList<>();
     ArrayList<String> singleOperatorToken = new ArrayList<>();
     ArrayList<String> doubleOperatorToken = new ArrayList<>();
+
+    // other necessary things
+    Stack<Character> bracketStack = new Stack<>();
 
 
     // through constructor set the codeForTokenizing
@@ -41,11 +48,14 @@ public class Tokenizer {
     /****  Operand Tokenization Starts here   ****/
 
     private void tokenizeOperands() {
-        codeForOperandTokenizing = codeForTokenizing;
+        codeForOperandTokenizing.addAll(codeForTokenizing);
+        //codeForOperandTokenizing = codeForTokenizing;
         separateStrings();
         separateCharacters();
+//        for(String s: codeForOperandTokenizing)
+//            System.out.println(s);
         separateNumbers();
-        separateTypeSpecifiers();
+        //separateTypeSpecifiers();      //type specifiers shouldn't count according to many
         separateIdentifiers();
 //        for(String line: stringToken)
 //            System.out.println(line);
@@ -59,16 +69,16 @@ public class Tokenizer {
 //            System.out.println(line);
     }
 
-//    private void substringRemover(int index, int start, int end){
-//        String line = codeForOperatorTokenizing.get(index);
-//        StringBuilder str = new StringBuilder();
-//        for(int i=0; i<line.length(); i++){
-//            if(!(i>=start && i<end)){
-//                str.append(line.charAt(i));
-//            }
-//        }
-//        codeForOperatorTokenizing.set(index,str.toString());
-//    }
+    private void substringRemover(int index, int start, int end) throws IndexOutOfBoundsException{
+        String line = codeForOperandTokenizing.get(index);
+        StringBuilder str = new StringBuilder();
+        for(int i=0; i<line.length(); i++){
+            if(!(i>=start && i<end)){
+                str.append(line.charAt(i));
+            }
+        }
+        codeForOperandTokenizing.set(index,str.toString());
+    }
 
     //*** string separation begins ***///
     private void separateStrings() {
@@ -96,7 +106,7 @@ public class Tokenizer {
                     doubleQuote = false;
                     String temp = line.substring(startPosition, startPosition+totalCharacters);
                     stringToken.add(temp);
-                    //substringRemover(index, startPosition, startPosition+totalCharacters);
+                    substringRemover(index, startPosition,startPosition+totalCharacters);
                     totalCharacters=0;
                 }
             }
@@ -130,7 +140,7 @@ public class Tokenizer {
                     singleQuote = false;
                     String temp = line.substring(position, position+totalCharacters);
                     characterToken.add(temp);
-                    //substringRemover(index, position, position+totalCharacters);
+                    substringRemover(index, position, position+totalCharacters);
                     totalCharacters=0;
                     position = -1;
                 }
@@ -182,40 +192,40 @@ public class Tokenizer {
     ///*** Number separation ends here ***///
 
     ///*** Type specifier separation begins ***///
-    private void separateTypeSpecifiers(){
-        for(int i = 0; i< codeForOperandTokenizing.size(); i++){
-            String line = codeForOperandTokenizing.get(i);
-            lineWiseSeparateTypeSpecifiers(line, i);
-        }
-    }
-
-    private void lineWiseSeparateTypeSpecifiers(String line, int index) {
-        int lineSize = line.length();
-        StringBuilder str =  new StringBuilder();
-
-        int i=0;
-        while(i<lineSize){
-            if(line.charAt(i)!=' ' && line.charAt(i)!=','){
-                str.append(line.charAt(i));
-                i++;
-            }
-            else{
-                isTypeSpecifier(str.toString());
-                i++;
-                str.setLength(0);
-            }
-        }
-    }
-
-    private void isTypeSpecifier(String str) {
-        String []typeSpecifier = {"bool", "char", "double", "int", "float", "long",
-                                   "short", "signed", "unsigned", "void"};
-        for(String s: typeSpecifier){
-            if(s.equals(str)){
-                typeSpecifierToken.add(str);
-            }
-        }
-    }
+//    private void separateTypeSpecifiers(){
+//        for(int i = 0; i< codeForOperandTokenizing.size(); i++){
+//            String line = codeForOperandTokenizing.get(i);
+//            lineWiseSeparateTypeSpecifiers(line, i);
+//        }
+//    }
+//
+//    private void lineWiseSeparateTypeSpecifiers(String line, int index) {
+//        int lineSize = line.length();
+//        StringBuilder str =  new StringBuilder();
+//
+//        int i=0;
+//        while(i<lineSize){
+//            if(line.charAt(i)!=' ' && line.charAt(i)!=','){
+//                str.append(line.charAt(i));
+//                i++;
+//            }
+//            else{
+//                isTypeSpecifier(str.toString());
+//                i++;
+//                str.setLength(0);
+//            }
+//        }
+//    }
+//
+//    private void isTypeSpecifier(String str) {
+//        String []typeSpecifier = {"bool", "char", "double", "int", "float", "long",
+//                                   "short", "signed", "unsigned", "void"};
+//        for(String s: typeSpecifier){
+//            if(s.equals(str)){
+//                typeSpecifierToken.add(str);
+//            }
+//        }
+//    }
     ///*** Type Specifier separation ends here ***///
 
 
@@ -435,7 +445,7 @@ public class Tokenizer {
     }
 
     private boolean isNameChar(char c){
-        char []ch ={' ', ',', ';', '+', '-', '*', '/', '=', '{', '}', '^', '%', '[', ']', '.', '>', '(', ')'};
+        char []ch ={' ', ',', ';', '+', '-', '*', '/', '=', '{', '}', '^', '%', '[', ']', '.', '>', '(', ')', '&'};
         for(char x: ch){
             if(x==c){
                 return false;
@@ -462,7 +472,7 @@ public class Tokenizer {
     /****   Operator Tokenization starts here   ****/
 
     private void tokenizeOperators(){
-        codeForOperatorTokenizing = codeForTokenizing;
+        codeForOperatorTokenizing = codeForOperandTokenizing;
         separate_Reserved_Loop_Control();
         separate_Bracket_otherOperators();
     }
@@ -541,10 +551,13 @@ public class Tokenizer {
     }
 
     private boolean isReservedWord(String temp) {
-        String []reservedWords = {"auto", "break", "case", "const", "continue",
-                                   "default", "do", "register", "return", "short",
-                                   "signed", "sizeof", "static", "goto", "typedef",
-                                   "unsigned", "volatile", "enum", "extern"};
+        String []reservedWords = {"auto", "break", "const", "continue",
+                "default", "register", "return", "short",
+                "signed", "sizeof", "static", "goto", "typedef",
+                "unsigned", "volatile", "enum", "extern", "main",
+                "scanf", "printf", "int", "bool", "char", "double",
+                "int", "float", "long", "short", "signed", "unsigned",
+                "void", "struct", "union", "string", "vector"};
 
         for(String str: reservedWords){
             if(str.equals(temp)){
@@ -601,10 +614,40 @@ public class Tokenizer {
         while(i<lineSize){
             char c = line.charAt(i);
             if(isBracket(c)){
-                str.append(c);
-                bracketToken.add(str.toString());
-                str.setLength(0);
-                i++;
+                if(c=='(' || c=='{' || c=='['){
+                    bracketStack.push(c);
+                    i++;
+                }
+                else if(c==')'){
+                    if(!bracketStack.empty() && bracketStack.peek()=='(') {
+                        bracketStack.pop();
+                        str.append(c);
+                        bracketToken.add(str.toString());
+                        str.setLength(0);
+                        i++;
+                    }
+                    else i++;
+                }
+                else if(c=='}'){
+                    if(!bracketStack.empty() && bracketStack.peek()=='{') {
+                        bracketStack.pop();
+                        str.append(c);
+                        bracketToken.add(str.toString());
+                        str.setLength(0);
+                        i++;
+                    }
+                    else i++;
+                }
+                else if(c==']'){
+                    if(!bracketStack.empty() && bracketStack.peek()=='[') {
+                        bracketStack.pop();
+                        str.append(c);
+                        bracketToken.add(str.toString());
+                        str.setLength(0);
+                        i++;
+                    }
+                    else i++;
+                }
             }
             else if(operator(c)){
                 str.append(c);
@@ -639,7 +682,7 @@ public class Tokenizer {
 
     private boolean operator(char c){
         char []operator = {'+', '-', '*', '/', '=', '%', '!', '<', '>', '|',
-                           '&', '~', '^', '.', ':', '?', ',', ';'};
+                '&', '~', '^', '.', ':', '?', ',', ';'};
 
         for(char ch: operator){
             if(ch==c){

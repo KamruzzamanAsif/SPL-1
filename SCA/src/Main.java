@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[]args) throws IOException {
 
         //String path = "G:/SCA/src/LOC test.c";
-        //String path = "G:/SCA/src/test1.c";
-        String path = "G:/SCA/src/test/loc1.c";
+        String path = "G:/SCA/src/test/test1.c";
+        //String path = "G:/SCA/src/test/loc1.c";
 
 
         LOC loc = new LOC();

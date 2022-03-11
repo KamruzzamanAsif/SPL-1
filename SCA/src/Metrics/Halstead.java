@@ -89,9 +89,9 @@ public class Halstead {
 
         programVocabulary = n1+n2;
         programLength = N1+N2;
-        calculatedProgramLength = n1*Math.log((double) n1) + n2*Math.log((double) n2);
-        volume = programLength*Math.log((double)programVocabulary);
-        difficulty = (n1/2) * (N2/n2);
+        calculatedProgramLength = (n1*(Math.log((double) n1)/Math.log((double)2))) + (n2*(Math.log((double) n2)/Math.log((double)2)));
+        volume = programLength*(Math.log((double)programVocabulary)/Math.log((double)2));
+        difficulty =  ((double)n1/(double)2) * ((double)N2/(double)n2);
         effort = volume * difficulty;
         timeRequiredToProgram = effort/18;
         numberOfDeliveredBugs = volume/3000;
