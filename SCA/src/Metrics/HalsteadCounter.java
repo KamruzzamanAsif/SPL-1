@@ -62,8 +62,12 @@ public class HalsteadCounter {
     }
 
     private void calculate(){
-        /** count operand tokens **/
+        calculateOperandTokens();
+        calculateOperatorTokens();
+    }
 
+    private void calculateOperandTokens() {
+        /** count operand tokens **/
         //count string tokens
         temp.clear();
         totalNumberOfOperands += stringToken.size();
@@ -123,7 +127,9 @@ public class HalsteadCounter {
                 }
             }
         }
+    }
 
+    private void calculateOperatorTokens() {
         /** count operator tokens **/
         // count reserved word tokens
         temp.clear();
@@ -191,6 +197,7 @@ public class HalsteadCounter {
         }
         numberOfDistinctOperators += temp.size();
     }
+
 
     //*** return Halstead measures  ***//
     public int getTotalNumberOfOperands(){
