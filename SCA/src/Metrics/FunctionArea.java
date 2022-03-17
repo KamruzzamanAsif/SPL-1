@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class FunctionArea {
     ArrayList<String> code = new ArrayList<>();
-    int [][]functionArea = new int[100][2];
+    int [][]functionArea = new int[1000][2];
     public int[][] detectFunctionArea(ArrayList<String> code){
         this.code = code;
         Stack<Character> secondBracket = new Stack<>();

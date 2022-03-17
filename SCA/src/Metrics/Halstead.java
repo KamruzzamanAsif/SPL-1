@@ -112,5 +112,4 @@ public class Halstead {
         System.out.println("Time Required to Program, T: "+timeRequiredToProgram+" seconds");
         System.out.println("Number of Delivered Bugs, B: "+numberOfDeliveredBugs);
     }
-
 }

@@ -5,3 +5,4 @@ main()
   avg = (a+b+c)/3;
   printf("avg = %d", avg);
 }
+

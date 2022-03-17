@@ -11,7 +11,6 @@ public class Tokenizer {
     int [][]functionArea;
 
     // operand token lists
-    //ArrayList<String> codeForOperandTokenizing = new ArrayList<>();
     Vector<String> codeForOperandTokenizing = new Vector<>();
     ArrayList<String> stringToken = new ArrayList<>();
     ArrayList<String> characterToken = new ArrayList<>();
@@ -21,7 +20,6 @@ public class Tokenizer {
     ArrayList<String> tempUniqueIdentifier = new ArrayList<>(); // for method level temp arrayList
 
     // operator token lists
-    //ArrayList<String> codeForOperatorTokenizing = new ArrayList<>();
     Vector<String> codeForOperatorTokenizing = new Vector<>();
     ArrayList<String> reservedWordToken = new ArrayList<>();
     ArrayList<String> loopingStatementToken = new ArrayList<>();
@@ -49,21 +47,17 @@ public class Tokenizer {
 
     private void tokenizeOperands() {
         codeForOperandTokenizing.addAll(codeForTokenizing);
-        //codeForOperandTokenizing = codeForTokenizing;
         separateStrings();
         separateCharacters();
 //        for(String s: codeForOperandTokenizing)
 //            System.out.println(s);
         separateNumbers();
-        //separateTypeSpecifiers();      //type specifiers shouldn't count according to many
         separateIdentifiers();
 //        for(String line: stringToken)
 //            System.out.println(line);
 //        for(String line: characterToken)
 //            System.out.println(line);
 //        for(String line: numberToken)
-//            System.out.println(line);
-//        for(String line: typeSpecifierToken)
 //            System.out.println(line);
 //        for(String line: identifierToken)
 //            System.out.println(line);
@@ -191,43 +185,6 @@ public class Tokenizer {
     }
     ///*** Number separation ends here ***///
 
-    ///*** Type specifier separation begins ***///
-//    private void separateTypeSpecifiers(){
-//        for(int i = 0; i< codeForOperandTokenizing.size(); i++){
-//            String line = codeForOperandTokenizing.get(i);
-//            lineWiseSeparateTypeSpecifiers(line, i);
-//        }
-//    }
-//
-//    private void lineWiseSeparateTypeSpecifiers(String line, int index) {
-//        int lineSize = line.length();
-//        StringBuilder str =  new StringBuilder();
-//
-//        int i=0;
-//        while(i<lineSize){
-//            if(line.charAt(i)!=' ' && line.charAt(i)!=','){
-//                str.append(line.charAt(i));
-//                i++;
-//            }
-//            else{
-//                isTypeSpecifier(str.toString());
-//                i++;
-//                str.setLength(0);
-//            }
-//        }
-//    }
-//
-//    private void isTypeSpecifier(String str) {
-//        String []typeSpecifier = {"bool", "char", "double", "int", "float", "long",
-//                                   "short", "signed", "unsigned", "void"};
-//        for(String s: typeSpecifier){
-//            if(s.equals(str)){
-//                typeSpecifierToken.add(str);
-//            }
-//        }
-//    }
-    ///*** Type Specifier separation ends here ***///
-
 
     //*** To handle variable token we must go through function area wise ***//
     // Because: Global variables used in different modules of the same program are counted as multiple occurrences of the same variable.
@@ -345,7 +302,7 @@ public class Tokenizer {
                     if(line.charAt(i)!= ' ' && line.charAt(i)!= ',' && line.charAt(i)!=';'
                             && line.charAt(i)!= '(' && line.charAt(i)!=')' && line.charAt(i)!='['
                             && line.charAt(i)!=']' && line.charAt(i)!='{' && line.charAt(i)!='}'
-                            && line.charAt(i)!='='){
+                            && line.charAt(i)!='=' && line.charAt(i)!= '*'){
                         ind_str.append(line.charAt(i));
                         i++;
                     }
