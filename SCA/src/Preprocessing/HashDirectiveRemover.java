@@ -26,9 +26,9 @@ public class HashDirectiveRemover {
         }
     }
 
-    public void lineWiseHashDirectiveRemover(String line, int statIndex, int finishingIndex){
-        StringBuffer x = new StringBuffer();
-        int i=statIndex;
+    public void lineWiseHashDirectiveRemover(String line, int startIndex, int finishingIndex){
+        StringBuilder x = new StringBuilder();
+        int i=startIndex;
         while(i<finishingIndex && line.charAt(i)!=' '){
             x.append(line.charAt(i));
             i++;
@@ -37,12 +37,13 @@ public class HashDirectiveRemover {
         String str = x.toString();
         boolean flag = false;
         for(String directive: hashDirectives){
-            if(str.equals(directive)){
+            if (str.equals(directive)) {
                 flag = true;
+                break;
             }
         }
 
-        if(flag==false){
+        if(!flag){
             hashDirectiveRemovedCode.add(line);     // just adding not containing hashDirective line
         }
     }
