@@ -29,28 +29,12 @@ public class PreprocessingForHalstead {
     public void process() throws IOException {
         commentRemover = new CommentRemover();
         commentRemovedCode = commentRemover.removeComment(path);
-//        for(String line: commentRemovedCode){
-//            System.out.println(line);
-//        }
-
         frontWhiteSpaceRemover = new FrontWhiteSpaceRemover();
         frontWhiteSpaceRemovedCode = frontWhiteSpaceRemover.removeFrontWhiteSpace(commentRemovedCode);
-//        for(String line: frontWhiteSpaceRemovedCode){
-//            System.out.println(line);
-//        }
-
         blankLineRemover = new BlankLineRemover();
         blankLineRemovedCode = blankLineRemover.blankLineRemover(frontWhiteSpaceRemovedCode);
-//        for(String line: blankLineRemovedCode){
-//            System.out.println(line);
-//        }
-
         hashDirectiveRemover = new HashDirectiveRemover();
         hashDirectiveRemovedCode = hashDirectiveRemover.removeHashDirective(blankLineRemovedCode);
-//        for(String line: hashDirectiveRemovedCode){
-//            System.out.println(line);
-//        }
-
         functionDeclarationRemover = new FunctionDeclarationRemover();
         functionDeclarationRemovedCode = functionDeclarationRemover.removeFunctionDeclaration(hashDirectiveRemovedCode);
     }

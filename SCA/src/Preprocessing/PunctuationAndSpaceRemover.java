@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PunctuationAndSpaceRemover {
     ArrayList<String> punctuationAndSpaceRemovedCode = new ArrayList<>();
-    char[] punctuations = {',', ':', ';', '.', '(', ')', '{', '}', '[', ']'};
+    char[] punctuations = {',', ':', ';', '.'};
     String line;
 
     public ArrayList<String> removePunctuationAndSpace(ArrayList<String> code){
