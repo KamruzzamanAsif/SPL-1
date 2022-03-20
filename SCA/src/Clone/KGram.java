@@ -16,7 +16,7 @@ public class KGram {
     public ArrayList<String> generateKGrams(){
         makeCodeStr();
         StringBuilder str = new StringBuilder();
-        for(int i=0; i<codeStr.length(); i++){
+        for(int i=0; i<codeStr.length()-kGramSize+1; i++){
             for(int j = i; j<i+kGramSize; j++){
                 if(j<codeStr.length())
                     str.append(codeStr.charAt(j));

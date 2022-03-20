@@ -36,8 +36,9 @@ public class CloneMain {
     private void generate_K_Grams(){
         kGram = new KGram(3, preprocessedCode1);
         kGrams1 = kGram.generateKGrams();
+//        System.out.println(kGrams1);
         kGram = new KGram(3, preprocessedCode2);
         kGrams2 = kGram.generateKGrams();
-        //System.out.println(kGrams2);
+//        System.out.println(kGrams2);
     }
 }
