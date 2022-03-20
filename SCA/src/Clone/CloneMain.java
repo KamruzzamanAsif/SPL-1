@@ -8,8 +8,11 @@ public class CloneMain {
     private final String path2;
     ArrayList<String> preprocessedCode1 = new ArrayList<String>();
     ArrayList<String> preprocessedCode2 = new ArrayList<String>();
+    ArrayList<String> kGrams1 = new ArrayList<String>();
+    ArrayList<String> kGrams2 = new ArrayList<String>();
 
     PreprocessingForClone preprocessingForClone;
+    KGram kGram;
 
     public CloneMain(String path1, String path2){
         this.path1 = path1;
@@ -18,6 +21,7 @@ public class CloneMain {
 
     public void cloneProcess() throws IOException {
         preprocess();
+        generate_K_Grams();
     }
 
     private void preprocess() throws IOException {
@@ -29,4 +33,11 @@ public class CloneMain {
         preprocessedCode2 = preprocessingForClone.getFinalPreprocessedCodeForClone();
     }
 
+    private void generate_K_Grams(){
+        kGram = new KGram(3, preprocessedCode1);
+        kGrams1 = kGram.generateKGrams();
+        kGram = new KGram(3, preprocessedCode2);
+        kGrams2 = kGram.generateKGrams();
+        //System.out.println(kGrams2);
+    }
 }
