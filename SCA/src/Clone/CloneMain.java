@@ -14,6 +14,8 @@ public class CloneMain {
 
     PreprocessingForClone preprocessingForClone;
     KGram kGram;
+    KGramHash kGramHash;
+    ArrayList<Long> kGramHashes1 = new ArrayList<>();
 
     public CloneMain(int kGramSize, String path1, String path2){
         this.kGramSize = kGramSize;
@@ -46,6 +48,8 @@ public class CloneMain {
     }
 
     private void generate_hashValues_of_KGrams(){
-
+        kGramHash = new KGramHash(kGrams1);
+        kGramHashes1 = kGramHash.rollingHash();
+        System.out.println(kGramHashes1);
     }
 }
