@@ -19,7 +19,7 @@ public class Main {
 //        Halstead halstead = new Halstead(path);
 //        halstead.DoHalstead();
 
-        CloneMain cloneMain = new CloneMain(path1, path2);
+        CloneMain cloneMain = new CloneMain(3,path1, path2);
         cloneMain.cloneProcess();
 
     }
