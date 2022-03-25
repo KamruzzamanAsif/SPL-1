@@ -10,7 +10,8 @@ public class Main {
     public static void main(String[]args) throws IOException {
 
         String path1 = "SCA/src/test/LOC test.c";
-        String path2 = "SCA/src/test/test1.c";
+        String path2 = "SCA/src/test/duplicateLOCtest.c";
+        //String path2 = "SCA/src/test/test1.c";
         //String path = "SCA/src/test/pointerArgTest.c";
 
 //        LOC loc = new LOC();

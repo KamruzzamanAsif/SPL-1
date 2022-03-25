@@ -18,7 +18,9 @@ public class CloneMain {
     ArrayList<Long> kGramHashes1 = new ArrayList<>();
     ArrayList<Long> kGramHashes2 = new ArrayList<>();
     Winnowing winnowing;
-    ArrayList<Long> fingerprints = new ArrayList<>();
+    ArrayList<Long> fingerprints1 = new ArrayList<>();
+    ArrayList<Long> fingerprints2 = new ArrayList<>();
+    SimilarityChecker similarityChecker;
 
     public CloneMain(int kGramSize, String path1, String path2){
         this.kGramSize = kGramSize;
@@ -31,6 +33,7 @@ public class CloneMain {
         generate_K_Grams();
         generate_hashValues_of_KGrams();
         generate_fingerprints();
+        generate_result();
     }
 
     private void preprocess() throws IOException {
@@ -54,8 +57,8 @@ public class CloneMain {
     private void generate_hashValues_of_KGrams(){
         kGramHash = new KGramHash(kGrams1);
         kGramHashes1 = kGramHash.rollingHash();
-        System.out.println(kGramHashes1);
-        System.out.println("k gram hash size:" + kGrams1.size());
+//        System.out.println(kGramHashes1);
+//        System.out.println("k gram hash size:" + kGrams1.size());
         kGramHash = new KGramHash(kGrams2);
         kGramHashes2 = kGramHash.rollingHash();
         //System.out.println(kGramHashes2);
@@ -63,8 +66,16 @@ public class CloneMain {
 
     private void generate_fingerprints(){
         winnowing = new Winnowing(kGramHashes1, 3);
-        fingerprints = winnowing.winnow();
-        System.out.println(fingerprints);
-        System.out.println(fingerprints.size());
+        fingerprints1 = winnowing.winnow();
+//        System.out.println(fingerprints);
+//        System.out.println(fingerprints.size());
+        winnowing = new Winnowing(kGramHashes2, 3);
+        fingerprints2 = winnowing.winnow();
+    }
+
+    private void generate_result(){
+        similarityChecker = new SimilarityChecker(fingerprints1,fingerprints2);
+        double result = similarityChecker.getClone();
+        System.out.println(result);
     }
 }
