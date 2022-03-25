@@ -4,18 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CloneMain {
-    private int kGramSize;
+    private final int kGramSize;
     private final String path1;
     private final String path2;
-    ArrayList<String> preprocessedCode1 = new ArrayList<String>();
-    ArrayList<String> preprocessedCode2 = new ArrayList<String>();
-    ArrayList<String> kGrams1 = new ArrayList<String>();
-    ArrayList<String> kGrams2 = new ArrayList<String>();
+    ArrayList<String> preprocessedCode1 = new ArrayList<>();
+    ArrayList<String> preprocessedCode2 = new ArrayList<>();
+    ArrayList<String> kGrams1 = new ArrayList<>();
+    ArrayList<String> kGrams2 = new ArrayList<>();
 
     PreprocessingForClone preprocessingForClone;
     KGram kGram;
     KGramHash kGramHash;
     ArrayList<Long> kGramHashes1 = new ArrayList<>();
+    ArrayList<Long> kGramHashes2 = new ArrayList<>();
 
     public CloneMain(int kGramSize, String path1, String path2){
         this.kGramSize = kGramSize;
@@ -50,6 +51,9 @@ public class CloneMain {
     private void generate_hashValues_of_KGrams(){
         kGramHash = new KGramHash(kGrams1);
         kGramHashes1 = kGramHash.rollingHash();
-        System.out.println(kGramHashes1);
+        //System.out.println(kGramHashes1);
+        kGramHash = new KGramHash(kGrams2);
+        kGramHashes2 = kGramHash.rollingHash();
+        System.out.println(kGramHashes2);
     }
 }

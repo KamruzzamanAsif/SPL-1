@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class KGramHash {
     private final int base = 101;
     private final long m = (long)1e9+9;
-    private int kGramSize;
-    ArrayList<String> kGrams = new ArrayList<>();
+    ArrayList<String> kGrams;
     ArrayList<Long> kGramHashes = new ArrayList<>();
 
     public KGramHash(ArrayList<String> kGrams){
@@ -18,16 +17,16 @@ public class KGramHash {
         long currentHash = hornersRule(currentString);
         kGramHashes.add(currentHash);
         // now do the remaining in O(1)
-        kGramSize = currentString.length();
+        int kGramSize = currentString.length();
         //System.out.println(kGramSize);
         long offset = 1;
-        for(int i=0; i<kGramSize-1; i++){
+        for(int i = 0; i< kGramSize -1; i++){
             offset = (offset*base);
         }
 //        System.out.println(offset);
 //        System.out.println(hornersRule(kGrams.get(0)));
 //        System.out.println(hornersRule(kGrams.get(1)));
-        // now we have to calculate the remaining hases form current hash
+        // now we have to calculate the remaining hashes form current hash
         long nextHash;
         String nextString;
         for(int j=1; j<kGrams.size(); j++){
