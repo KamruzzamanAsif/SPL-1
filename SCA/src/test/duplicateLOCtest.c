@@ -35,15 +35,12 @@ int main() {
 }
 
 int my_function1(int x, int y){
-    int n;
+    int a;
     for(int i=0; i<10; i++)
-       printf("Hi");
+       printf("HI");
 
-    if(n==1){
-    printf("1");
-    }
+    if(a==1)
+       printf("1");
     else
        printf("2");
-
-    return 10;
 }

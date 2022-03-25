@@ -12,8 +12,10 @@ public class SimilarityChecker {
     }
 
     public double getClone(){
-        double jaccardResult = jaccardSimilarity();
-        return jaccardResult;
+//        double jaccardResult = jaccardSimilarity();
+//        return jaccardResult;
+        double diceCoefficientResult = diceCoefficient();
+        return diceCoefficientResult;
     }
 
     private double jaccardSimilarity() {
@@ -26,6 +28,19 @@ public class SimilarityChecker {
         jaccardCoefficient = (double) (C * 100) / ((A + B) - C);
 
         return jaccardCoefficient;
+    }
+
+    private double diceCoefficient(){
+        ArrayList<Long> diceIntersection = intersection();
+        double diceCoefficient;
+        int C = diceIntersection.size();
+        int A = fingerprints1.size();
+        int B = fingerprints2.size();
+
+        diceCoefficient = (double) (2*C)/(A+B);
+        diceCoefficient *= 100;
+
+        return  diceCoefficient;
     }
 
     private ArrayList<Long> intersection(){
