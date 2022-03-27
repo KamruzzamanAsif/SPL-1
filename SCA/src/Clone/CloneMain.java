@@ -1,6 +1,7 @@
 package Clone;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CloneMain {
@@ -76,6 +77,7 @@ public class CloneMain {
     private void generate_result(){
         similarityChecker = new SimilarityChecker(fingerprints1,fingerprints2);
         double result = similarityChecker.getClone();
-        System.out.println(result);
+        DecimalFormat df = new DecimalFormat("0.000");
+        System.out.println("Clone between the two file is: " + df.format(result) + "%");
     }
 }
