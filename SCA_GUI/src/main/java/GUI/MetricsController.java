@@ -1,7 +1,6 @@
 package GUI;
 
 import Metrics.Halstead;
-import Metrics.LOC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,24 +47,38 @@ public class MetricsController implements Initializable {
         }
     }
 
-    public void clickOnLOCMetricsButton() throws IOException {
+    public void clickOnLOCMetricsButton(ActionEvent event) throws IOException {
         String path = metricsTextField.getText();
         if(path.isEmpty()){
             metricsLabel.setTextFill(Paint.valueOf("RED"));
             return;
         }
-        LOC loc = new LOC();
-        loc.DoLOC(path);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("loc.fxml"));
+        Parent root = loader.load();
+        LOCController locController = loader.getController();
+        locController.showLOC(path);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void clickOnHalsteadMetricsButton() throws IOException {
+    public void clickOnHalsteadMetricsButton(ActionEvent event) throws IOException {
         String path = metricsTextField.getText();
         if(path.isEmpty()){
             metricsLabel.setTextFill(Paint.valueOf("RED"));
             return;
         }
-        Halstead halstead = new Halstead(path);
-        halstead.DoHalstead();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("halstead.fxml"));
+        Parent root = loader.load();
+        HalsteadController halsteadController = loader.getController();
+        halsteadController.showHalstead(path);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override

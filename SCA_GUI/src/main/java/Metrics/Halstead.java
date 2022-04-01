@@ -42,7 +42,7 @@ public class Halstead {
         preProcessForHalstead();
         detectMethodArea();
         countHalstead();
-        printData();
+        //printData();
     }
 
     private void initializeHalsteadData() {
@@ -111,5 +111,42 @@ public class Halstead {
         System.out.println("Effort, E: "+effort);
         System.out.println("Time Required to Program, T: "+timeRequiredToProgram+" seconds");
         System.out.println("Number of Delivered Bugs, B: "+numberOfDeliveredBugs);
+    }
+
+    public int getNumberOfDistinctOperators(){
+        return numberOfDistinctOperators;
+    }
+    public int getNumberOfDistinctOperands(){
+        return numberOfDistinctOperands;
+    }
+    public int getTotalNumberOfOperators(){
+        return totalNumberOfOperators;
+    }
+    public int getTotalNumberOfOperands(){
+        return totalNumberOfOperands;
+    }
+    public int getProgramVocabulary(){
+        return programVocabulary;
+    }
+    public int getProgramLength(){
+        return programLength;
+    }
+    public double getCalculatedProgramLength(){
+        return calculatedProgramLength;
+    }
+    public double getVolume(){
+        return volume;
+    }
+    public double getDifficulty(){
+        return difficulty;
+    }
+    public double getEffort(){
+        return effort;
+    }
+    public double getTimeRequiredToProgram(){
+        return timeRequiredToProgram;
+    }
+    public double getNumberOfDeliveredBugs(){
+        return numberOfDeliveredBugs;
     }
 }

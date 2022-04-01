@@ -24,7 +24,7 @@ public class LOC {
     public void DoLOC(String fp) throws IOException {
         initializeData();
         analyze(fp);
-        printData();
+        //printData();
     }
 
     private void initializeData() {
@@ -202,13 +202,33 @@ public class LOC {
         }
     }
 
-    private void printData() {
-        System.out.println("///*** LOC Metrics ***///");
-        System.out.println("Total Blank lines: "+ numberOfBlankLine);
-        System.out.println("Total Physical lines: "+ numberOfPhysicalLine);
-        System.out.println("Total Logical Statements: "+ numberOfLogicalStatements);
-        System.out.println("Number of Only Comment Lines: "+ onlyCommentLine);
-        System.out.println("Number of Comment and Statement lines: "+commentAndStatementLines);
-        System.out.println("Number of Only Statement line: "+ onlyStatementLines);
+//    private void printData() {
+//        System.out.println("///*** LOC Metrics ***///");
+//        System.out.println("Total Blank lines: "+ numberOfBlankLine);
+//        System.out.println("Total Physical lines: "+ numberOfPhysicalLine);
+//        System.out.println("Total Logical Statements: "+ numberOfLogicalStatements);
+//        System.out.println("Number of Only Comment Lines: "+ onlyCommentLine);
+//        System.out.println("Number of Comment and Statement lines: "+commentAndStatementLines);
+//        System.out.println("Number of Only Statement line: "+ onlyStatementLines);
+//    }
+
+    public int getNumberOfBlankLine(){
+        return numberOfBlankLine;
     }
+    public int getNumberOfPhysicalLine(){
+        return numberOfPhysicalLine;
+    }
+    public int getNumberOfLogicalStatements(){
+        return numberOfLogicalStatements;
+    }
+    public int getOnlyCommentLine(){
+        return onlyCommentLine;
+    }
+    public int getCommentAndStatementLines(){
+        return commentAndStatementLines;
+    }
+    public int getOnlyStatementLines(){
+        return onlyStatementLines;
+    }
+
 }
