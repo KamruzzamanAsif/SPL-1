@@ -24,6 +24,7 @@ public class HalsteadController {
 
     @FXML
     private TextArea halsteadTextArea;
+
     public void showHalstead(String path) throws IOException {
         Halstead halstead = new Halstead(path);
         halstead.DoHalstead();
@@ -36,7 +37,6 @@ public class HalsteadController {
         halsteadTextArea.appendText("Total number of Operators, N1: " + totalNumberOfOperators + "\n\n");
         int totalNumberOfOperands = halstead.getTotalNumberOfOperands();
         halsteadTextArea.appendText("Total number of Operands, N2: " + totalNumberOfOperands + "\n\n");
-
 
         int programVocabulary = halstead.getProgramVocabulary();
         halsteadTextArea.appendText("Program Vocabulary, n: " + programVocabulary + "\n\n");

@@ -10,7 +10,7 @@
       <VBox fx:id="SCAInterfaceVBox" layoutX="178.0" layoutY="77.0" prefHeight="246.0" prefWidth="245.0">
          <children>
             <Button fx:id="MetricsButton" layoutX="500.0" layoutY="20.0" mnemonicParsing="false" onAction="#clickOnMetricsButton" text="Metrics" translateX="90.0" translateY="50.0" translateZ="30.0" />
-            <Button fx:id="CloneButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="68.0" text="Clone" translateX="90.0" translateY="120.0" translateZ="40.0" />
+            <Button fx:id="CloneButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#clickOnCloneButton" prefHeight="24.0" prefWidth="68.0" text="Clone" translateX="90.0" translateY="120.0" translateZ="40.0" />
          </children>
       </VBox>
       <ButtonBar fx:id="SCAInterfaceButtonBar" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="78.0">
