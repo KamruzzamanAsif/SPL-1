@@ -44,7 +44,7 @@ public class CloneController {
         }
     }
 
-    public void clickOnDetectClone(ActionEvent event) {
+    public void clickOnDetectClone(ActionEvent event) throws IOException {
         String directoryPath = cloneTextField.getText();
         if(directoryPath.isEmpty()){
             cloneLabel1.setTextFill(Paint.valueOf("RED"));
@@ -52,6 +52,7 @@ public class CloneController {
         }
 
         File[] files = new File(directoryPath).listFiles();
+        assert files != null;
         if(files.length>10){
             cloneLabel2.setTextFill(Paint.valueOf("RED"));
             return;
@@ -60,6 +61,14 @@ public class CloneController {
 //            System.out.println(file.getAbsolutePath());
 //        }
 
-        // Now we have to pass the files path to detect clone
+        // Now we have to pass the file paths to detect clone
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("cloneResult.fxml"));
+        Parent root = loader.load();
+        CloneResultController cloneResultController = loader.getController();
+        cloneResultController.showCloneResult(files);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
