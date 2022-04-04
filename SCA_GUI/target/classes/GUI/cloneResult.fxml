@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane fx:id="cloneResultAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CloneResultController">
    <children>
       <Button fx:id="cloneResultBackButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickOnCloneBackButton" text="Back" />
+      <TableView layoutY="85.0" prefHeight="301.0" prefWidth="601.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="File" />
+          <TableColumn prefWidth="75.0" text="1" />
+            <TableColumn prefWidth="75.0" text="2" />
+            <TableColumn prefWidth="75.0" text="3" />
+            <TableColumn prefWidth="75.0" text="4" />
+            <TableColumn prefWidth="75.0" text="5" />
+            <TableColumn prefWidth="75.0" text="6" />
+            <TableColumn minWidth="6.0" prefWidth="75.0" text="7" />
+            <TableColumn minWidth="6.0" prefWidth="75.0" text="8" />
+            <TableColumn minWidth="6.0" prefWidth="75.0" text="9" />
+            <TableColumn minWidth="6.0" prefWidth="75.0" text="10" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

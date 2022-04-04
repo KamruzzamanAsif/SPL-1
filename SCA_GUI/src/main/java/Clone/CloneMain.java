@@ -79,7 +79,7 @@ public class CloneMain {
         similarityChecker = new SimilarityChecker(fingerprints1,fingerprints2);
         cloneResult = similarityChecker.getClone();
         DecimalFormat df = new DecimalFormat("0.000");
-        System.out.println("Clone between the two file is: " + df.format(cloneResult) + "%");
+        //System.out.println("Clone between the two file is: " + df.format(cloneResult) + "%");
     }
 
     public double getCloneResult(){
