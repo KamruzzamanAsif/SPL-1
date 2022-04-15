@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -33,6 +35,8 @@ public class MetricsController {
     private TextField metricsTextField;
     @FXML
     private Label metricsLabel;
+    @FXML
+    private BorderPane metricsBorderPane;
 
     public void clickOnBrowseButton(){
         final FileChooser fileChooser = new FileChooser();
@@ -51,14 +55,28 @@ public class MetricsController {
         }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("loc.fxml"));
-        Parent root = loader.load();
+        Pane view = loader.load();
         LOCController locController = loader.getController();
         locController.showLOC(path);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        metricsBorderPane.setCenter(view);
     }
+
+//    public void clickOnLOCMetricsButton(ActionEvent event) throws IOException {
+//        String path = metricsTextField.getText();
+//        if(path.isEmpty()){
+//            metricsLabel.setTextFill(Paint.valueOf("RED"));
+//            return;
+//        }
+//
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("loc.fxml"));
+//        Parent root = loader.load();
+//        LOCController locController = loader.getController();
+//        locController.showLOC(path);
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
     public void clickOnHalsteadMetricsButton(ActionEvent event) throws IOException {
         String path = metricsTextField.getText();
@@ -68,13 +86,27 @@ public class MetricsController {
         }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("halstead.fxml"));
-        Parent root = loader.load();
+        Pane view = loader.load();
         HalsteadController halsteadController = loader.getController();
         halsteadController.showHalstead(path);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        metricsBorderPane.setCenter(view);
     }
+
+//    public void clickOnHalsteadMetricsButton(ActionEvent event) throws IOException {
+//        String path = metricsTextField.getText();
+//        if(path.isEmpty()){
+//            metricsLabel.setTextFill(Paint.valueOf("RED"));
+//            return;
+//        }
+//
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("halstead.fxml"));
+//        Parent root = loader.load();
+//        HalsteadController halsteadController = loader.getController();
+//        halsteadController.showHalstead(path);
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
 }

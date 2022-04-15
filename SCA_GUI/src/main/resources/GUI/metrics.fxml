@@ -1,23 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="metricsAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MetricsController">
+<AnchorPane fx:id="metricsAnchorPane" prefHeight="556.0" prefWidth="780.0" style="-fx-background-color: transparent; -fx-border-color: #7c1212; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.MetricsController">
    <children>
-      <ButtonBar fx:id="metricsBackButtonBar" layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="35.0">
-        <buttons>
-          <Button fx:id="metricsBackButton" mnemonicParsing="false" onAction="#clickOnMetricsBackButton" text="Back" />
-        </buttons>
-      </ButtonBar>
-      <Button fx:id="metricsBrowseButton" layoutX="448.0" layoutY="132.0" mnemonicParsing="false" onAction="#clickOnBrowseButton" text="Browse" />
-      <TextField fx:id="metricsTextField" layoutX="201.0" layoutY="132.0" prefHeight="24.0" prefWidth="199.0" />
-      <Label fx:id="metricsLabel" layoutX="212.0" layoutY="81.0" prefHeight="40.0" prefWidth="178.0" text="Select a .c extension file" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="LOCMetricsButton" layoutX="252.0" layoutY="243.0" mnemonicParsing="false" onAction="#clickOnLOCMetricsButton" text="LOC Metrics" />
-      <Button fx:id="HalsteadMetricsButton" layoutX="237.0" layoutY="289.0" mnemonicParsing="false" onAction="#clickOnHalsteadMetricsButton" text="Halstead Metrics" />
+      <BorderPane fx:id="metricsBorderPane" layoutX="4.0" layoutY="88.0" prefHeight="450.0" prefWidth="717.0" style="-fx-border-color: Blue; -fx-border-width: 5;">
+         <left>
+            <AnchorPane cache="true" prefHeight="361.0" prefWidth="252.0" style="-fx-border-color: #7c1212; -fx-border-width: 5; -fx-border-style: solid;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="metricsLabel" layoutX="21.0" layoutY="60.0" prefHeight="40.0" prefWidth="168.0" style="-fx-background-color: Transparent;" text="     Enter file path or,      Browse to select a file " textAlignment="CENTER" textFill="#000000eb" wrapText="true">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="metricsTextField" layoutX="14.0" layoutY="132.0" prefHeight="24.0" prefWidth="152.0" style="-fx-background-color: #f5f5f5; -fx-border-color: Blue;" />
+                  <Button fx:id="metricsBrowseButton" layoutX="175.0" layoutY="132.0" mnemonicParsing="false" onAction="#clickOnBrowseButton" prefHeight="24.0" prefWidth="70.0" text="Browse" textFill="#6b3131">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="LOCMetricsButton" layoutX="54.0" layoutY="192.0" mnemonicParsing="false" onAction="#clickOnLOCMetricsButton" prefHeight="24.0" prefWidth="89.0" text="LOC " textFill="#4a0404">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="HalsteadMetricsButton" layoutX="54.0" layoutY="249.0" mnemonicParsing="false" onAction="#clickOnHalsteadMetricsButton" text="Halstead" textFill="#510808">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </AnchorPane>
+         </left>
+         <center>
+            <ImageView fitHeight="412.0" fitWidth="411.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../image/metricsIcon.png" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+    <Button fx:id="metricsBackButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickOnMetricsBackButton" prefHeight="24.0" prefWidth="56.0" text="Back" textFill="#3d2eda">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="288.0" layoutY="26.0" prefHeight="41.0" prefWidth="143.0" text="Metrics" textFill="#7c1212">
+         <font>
+            <Font name="System Bold Italic" size="34.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
