@@ -1,0 +1,19 @@
+.button {
+    position: absolute;
+    top:50%;
+    background-color:#0a0a23;
+  }
+
+.button:hover {
+      background-color:#002ead;
+      transition: 0.7s;
+  }
+
+ .button:focus {
+    outline-color: transparent;
+    outline-style:solid;
+}
+
+.button:active {
+    background-color: #ffbf00;
+}
