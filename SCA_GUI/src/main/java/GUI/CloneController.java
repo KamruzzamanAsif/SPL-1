@@ -53,7 +53,7 @@ public class CloneController {
 
         File[] files = new File(directoryPath).listFiles();
         assert files != null;
-        if(files.length>10){
+        if(files.length>5){
             cloneLabel2.setTextFill(Paint.valueOf("RED"));
             return;
         }

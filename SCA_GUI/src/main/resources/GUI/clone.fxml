@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="cloneAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CloneController">
    <children>
       <Button fx:id="cloneBackButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickOnCloneBackButton" text="Back" />
@@ -15,7 +14,7 @@
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="cloneLabel2" layoutX="142.0" layoutY="91.0" text="Your directory musn't contain more than 10 files" />
+      <Label fx:id="cloneLabel2" layoutX="142.0" layoutY="91.0" text="Your directory musn't contain more than 5 files" />
       <Button fx:id="cloneBrowseButton" layoutX="440.0" layoutY="176.0" mnemonicParsing="false" onAction="#clickOnBrowseButton" text="Browse" />
       <TextField fx:id="cloneTextField" layoutX="201.0" layoutY="176.0" prefHeight="24.0" prefWidth="199.0" />
       <Button fx:id="detectCloneButton" layoutX="249.0" layoutY="279.0" mnemonicParsing="false" onAction="#clickOnDetectClone" text="Detect Clone" />
