@@ -1,48 +1,46 @@
 package GUI;
 
 import Metrics.LOC;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class LOCController {
-    public void clickOnLocBackButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("metrics.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @FXML
-    private TextArea locTextArea;
+    private TextFlow locTextFlow;
     public void showLOC(String path) throws IOException {
         LOC loc = new LOC();
         loc.DoLOC(path);
 
         int numberOfBlankLine = loc.getNumberOfBlankLine();
-        locTextArea.setText("Total Blank lines: " + numberOfBlankLine + "\n");
-        int numberOfPhysicalLine = loc.getNumberOfPhysicalLine();
-        locTextArea.appendText("\nTotal Physical lines: " + numberOfPhysicalLine + "\n");
-        int numberOfLogicalLine = loc.getNumberOfLogicalStatements();
-        locTextArea.appendText("\nTotal Logical Statements: " + numberOfLogicalLine + "\n");
-        int onlyCommentLine = loc.getOnlyCommentLine();
-        locTextArea.appendText("\nNumber of Only Comment Lines: " + onlyCommentLine + "\n");
-        int commentAndStatementLines = loc.getCommentAndStatementLines();
-        locTextArea.appendText("\nNumber of Comment and Statement lines: " + commentAndStatementLines + "\n");
-        int onlyStatementLines = loc.getOnlyStatementLines();
-        locTextArea.appendText("\nNumber of Only Statement line: " + onlyStatementLines + "\n");
+        Text text1 = new Text("Total Blank lines: " + numberOfBlankLine + "\n");
+        text1.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
 
-        locTextArea.setEditable(false);
-        locTextArea.setMouseTransparent(true);
-        locTextArea.setFocusTraversable(false);
+        int numberOfPhysicalLine = loc.getNumberOfPhysicalLine();
+        Text text2 = new Text("\nTotal Physical lines: " + numberOfPhysicalLine + "\n");
+        text2.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+
+        int numberOfLogicalLine = loc.getNumberOfLogicalStatements();
+        Text text3 = new Text("\nTotal Logical Statements: " + numberOfLogicalLine + "\n");
+        text3.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+
+        int onlyCommentLine = loc.getOnlyCommentLine();
+        Text text4 = new Text("\nNumber of Only Comment Lines: " + onlyCommentLine + "\n");
+        text4.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+
+        int commentAndStatementLines = loc.getCommentAndStatementLines();
+        Text text5 = new Text("\nNumber of Comment and Statement lines: " + commentAndStatementLines + "\n");
+        text5.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+
+        int onlyStatementLines = loc.getOnlyStatementLines();
+        Text text6 = new Text("\nNumber of Only Statement line: " + onlyStatementLines);
+        text6.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+
+       locTextFlow.getChildren().addAll(text1,text2,text3,text4,text5,text6);
     }
 }

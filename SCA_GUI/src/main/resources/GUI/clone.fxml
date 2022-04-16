@@ -6,17 +6,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="cloneAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CloneController">
+<AnchorPane fx:id="cloneAnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #7c1212; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CloneController">
    <children>
-      <Button fx:id="cloneBackButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickOnCloneBackButton" text="Back" />
-      <Label fx:id="cloneLabel1" layoutX="212.0" layoutY="54.0" prefHeight="37.0" prefWidth="177.0" text="Select a directory   " textAlignment="CENTER">
+      <Button fx:id="cloneBackButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickOnCloneBackButton" style="-fx-text-fill: blue;" text="Back" />
+      <Label fx:id="cloneLabel1" layoutX="212.0" layoutY="124.0" prefHeight="37.0" prefWidth="177.0" text="Select a directory   " textAlignment="CENTER">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="cloneLabel2" layoutX="142.0" layoutY="91.0" text="Your directory musn't contain more than 5 files" />
-      <Button fx:id="cloneBrowseButton" layoutX="440.0" layoutY="176.0" mnemonicParsing="false" onAction="#clickOnBrowseButton" text="Browse" />
-      <TextField fx:id="cloneTextField" layoutX="201.0" layoutY="176.0" prefHeight="24.0" prefWidth="199.0" />
-      <Button fx:id="detectCloneButton" layoutX="249.0" layoutY="279.0" mnemonicParsing="false" onAction="#clickOnDetectClone" text="Detect Clone" />
+      <Label fx:id="cloneLabel2" layoutX="146.0" layoutY="161.0" text="Your directory musn't contain more than 5 files" />
+      <Button fx:id="cloneBrowseButton" layoutX="410.0" layoutY="200.0" mnemonicParsing="false" onAction="#clickOnBrowseButton" text="Browse" textFill="#941515">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <TextField fx:id="cloneTextField" layoutX="198.0" layoutY="199.0" prefHeight="24.0" prefWidth="199.0" promptText="directory path" style="-fx-background-color: #f5f5f5; -fx-border-width: 1; -fx-border-color: Green;" />
+      <Button fx:id="detectCloneButton" layoutX="244.0" layoutY="273.0" mnemonicParsing="false" onAction="#clickOnDetectClone" text="Detect Clone" textFill="#8d1616">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Label layoutX="257.0" layoutY="38.0" prefHeight="30.0" prefWidth="80.0" text="Clone" textFill="#b91414">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
