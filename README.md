@@ -1,4 +1,5 @@
 # SPL-1
 
 # SCA-GUI 
-is the final Project dir
+This is the final project directory.
+
