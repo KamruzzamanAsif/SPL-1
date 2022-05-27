@@ -162,8 +162,12 @@ public class CloneResultController{
         }
     }
 
+    @FXML
+    private Label cloneResultPrintSuccessfulMessage;
     public void clickOnPrintResultButton() throws IOException {
         csvOutputFileWriting();
+        cloneResultPrintSuccessfulMessage.setDisable(false);
+        cloneResultPrintSuccessfulMessage.setVisible(true);
     }
 
 }

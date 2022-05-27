@@ -39,5 +39,10 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Button>
+      <Label fx:id="cloneResultPrintSuccessfulMessage" disable="true" layoutX="237.0" layoutY="436.0" text="Result Printed Successfully!" textFill="#970418" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
