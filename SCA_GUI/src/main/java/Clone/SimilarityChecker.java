@@ -12,10 +12,9 @@ public class SimilarityChecker {
     }
 
     public double getClone(){
-//        double jaccardResult = jaccardSimilarity();
-//        return jaccardResult;
+        double jaccardResult = jaccardSimilarity();
         double diceCoefficientResult = diceCoefficient();
-        return diceCoefficientResult;
+        return (jaccardResult + diceCoefficientResult)/2;
     }
 
     private double jaccardSimilarity() {

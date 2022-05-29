@@ -122,7 +122,7 @@ public class CloneResultController{
     private GridPane cloneGridPane;
     private void makeGridPane(){
         // We are filling GridPane from our CSV File
-        String CsvFile = "/home/asif/IdeaProjects/SCA_GUI/src/main/resources/result/cloneResult.csv";
+        String CsvFile = "src/main/resources/result/cloneResult.csv";
         String FieldDelimiter = ",";
 
         BufferedReader br;
