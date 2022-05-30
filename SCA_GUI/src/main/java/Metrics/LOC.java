@@ -90,8 +90,7 @@ public class LOC {
         return true;
     }
 
-    // this will count the logical statements
-    // In C the logical statements are those which ends with a semicolon
+
     private int onlyStatementCounter(String line, int startIndex, int finishingIndex) {
         int len = finishingIndex;
         int StatementAfterCommentIndex = 0;
@@ -127,7 +126,7 @@ public class LOC {
                 else if(line.charAt(i)=='"' && stack.peek()=='"'){
                     stack.pop();
                 }
-                else if(line.charAt(i)=='*' && line.charAt(i+1)=='/' && (i!=len-1) && stack.peek()=='*'){
+                else if((i!=len-1) && line.charAt(i)=='*' && line.charAt(i+1)=='/' && stack.peek()=='*'){
                     stack.pop();
                 }
             }
