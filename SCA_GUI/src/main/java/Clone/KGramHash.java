@@ -23,9 +23,6 @@ public class KGramHash {
         for(int i = 0; i< kGramSize -1; i++){
             offset = (offset*base);
         }
-//        System.out.println(offset);
-//        System.out.println(hornersRule(kGrams.get(0)));
-//        System.out.println(hornersRule(kGrams.get(1)));
         // now we have to calculate the remaining hashes form current hash
         long nextHash;
         String nextString;

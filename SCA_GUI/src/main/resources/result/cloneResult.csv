@@ -1,6 +1,6 @@
-file,test1.c,loc1.c,pointerArgTest.c,duplicateLOCtest.c,LOC test.c
-test1.c,100.000%    High,17.704%    Very Low,14.547%    Very Low,16.695%    Very Low,16.695%    Very Low
-loc1.c,8.660%    Very Low,100.000%    High,24.476%    Very Low,23.341%    Very Low,23.341%    Very Low
-pointerArgTest.c,7.956%    Very Low,20.599%    Very Low,100.000%    High,14.407%    Very Low,14.407%    Very Low
-duplicateLOCtest.c,4.562%    Very Low,14.442%    Very Low,8.524%    Very Low,100.000%    High,100.000%    High
-LOC test.c,4.562%    Very Low,14.442%    Very Low,8.524%    Very Low,100.000%    High,100.000%    High
+file,loc1.c,pointerArgTest.c,pointerDuplicate.c,duplicateLOCtest.c,LOC test.c
+loc1.c,100.000%    High,20.485%    Very Low,19.140%    Very Low,23.341%    Very Low,23.341%    Very Low
+pointerArgTest.c,19.140%    Very Low,100.000%    High,65.897%    Moderate,13.722%    Very Low,13.722%    Very Low
+pointerDuplicate.c,17.804%    Very Low,65.897%    Moderate,100.000%    High,12.711%    Very Low,12.711%    Very Low
+duplicateLOCtest.c,14.442%    Very Low,6.748%    Very Low,6.259%    Very Low,100.000%    High,100.000%    High
+LOC test.c,14.442%    Very Low,6.748%    Very Low,6.259%    Very Low,100.000%    High,100.000%    High
